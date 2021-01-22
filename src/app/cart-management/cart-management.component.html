@@ -1,0 +1,35 @@
+
+    
+    
+    <h1>My Cart</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItem">
+          <td>{{item.productId}}</td>
+          <td>{{item.productName}}</td>
+          <td class="align-middle">
+            <a (click)="minusOne(item)"><button class="btn">-</button></a>
+            {{item.quantity}}
+            <a (click)="addOne(item)"> <button class="btn">+</button></a>
+          </td>
+          <td><span>&#8377;</span> {{item.price}} </td>
+          <td class="align-middle">
+            <a (click)="removeItem(item.productId)" routerLink="./">Remove</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="cartItem.length > 0; else 0">
+      <h5 style="display: inline;">Total: <span>&#8377;</span> {{total}} </h5>
+      <button (click)="checkOut()" class="btn btn-warning float-right">Checkout</button>
+    </div>
